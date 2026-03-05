@@ -1,0 +1,9 @@
+{
+  "name": "svittiko",
+  "version": "1.0.0",
+  "description": "A personal 3D collection of beloved characters — built with Three.js",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "license": "MIT"
+}
