@@ -4,6 +4,7 @@ import { createKitty }  from "./characters/hello-kitty/index.js";
 import { createTigger } from "./characters/tigger/index.js";
 import { createOtter }  from "./characters/otter/index.js";
 import { createLights, ambientLight } from "./lights.js";
+import { createParticles } from "./particles.js";
 
 // ── Renderer ──────────────────────────────────────────────────────────────
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -22,6 +23,9 @@ controls.enablePan = false;
 controls.update();
 
 scene.add(...createLights());
+
+const particles = createParticles();
+scene.add(particles.points);
 
 // ── World group (used for responsive scaling) ─────────────────────────────
 const world = new THREE.Group();
@@ -99,6 +103,7 @@ function updateUI(index) {
   dotsEl.forEach((d, i) => d.classList.toggle("active", i === index));
   counterEl.textContent = `${String(index + 1).padStart(2, "0")} — ${String(pages.length).padStart(2, "0")}`;
   ambientLight.color.setHex(pages[index].ambientColor);
+  particles.setColor(pages[index].ambientColor);
   const root = document.documentElement;
   root.style.setProperty("--accent",  pages[index].accent);
   root.style.setProperty("--bg-from", pages[index].bgFrom);
@@ -122,6 +127,7 @@ function goTo(index) {
 // Init
 pages[current].model.visible = true;
 updateUI(current);
+particles.setColor(pages[current].ambientColor);
 
 window.goTo = goTo;
 
@@ -145,9 +151,12 @@ window.addEventListener("touchend", (e) => {
 }, { passive: true });
 
 // ── Animate ───────────────────────────────────────────────────────────────
+const clock = new THREE.Clock();
+
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
+  particles.update(clock.getElapsedTime());
   renderer.render(scene, camera);
 }
 animate();
