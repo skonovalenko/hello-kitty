@@ -32,6 +32,7 @@
         position: fixed;
         inset: 0;
         z-index: 0;
+        touch-action: none;
       }
 
       /* ── Fade overlay ─────────────────────────────────────── */
@@ -302,6 +303,75 @@
         text-transform: uppercase;
         color: rgba(255,255,255,0.2);
       }
+
+      /* ── Mobile ───────────────────────────────────────────── */
+      @media (max-width: 680px) {
+        .ui {
+          grid-template-columns: 44px 1fr 44px;
+        }
+
+        header {
+          padding: 28px 16px 0;
+          gap: 12px;
+        }
+
+        .brand-name {
+          font-size: clamp(1.8rem, 10vw, 2.8rem);
+        }
+
+        nav {
+          gap: 16px;
+          padding-top: 6px;
+        }
+
+        .arrow {
+          font-size: 1.2rem;
+        }
+
+        .char-info {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+          padding: 0 0 36px;
+        }
+
+        .char-text {
+          max-width: 100%;
+        }
+
+        .char-desc {
+          font-size: 0.78rem;
+          max-width: 100%;
+        }
+
+        .char-right {
+          width: 100%;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding-bottom: 0;
+        }
+
+        .char-year {
+          display: none;
+        }
+
+        .hint {
+          display: none;
+        }
+
+        .counter {
+          display: none;
+        }
+
+        /* Popovers open to the left on mobile to avoid overflow */
+        .popover {
+          right: auto;
+          left: 0;
+          min-width: 180px;
+        }
+      }
     </style>
 
     <script type="importmap">
@@ -364,7 +434,7 @@
             <button class="dot" aria-label="Page 2"></button>
             <button class="dot" aria-label="Page 3"></button>
           </div>
-          <div class="hint">Drag to rotate &nbsp;·&nbsp; ← → to browse</div>
+          <div class="hint">Drag / swipe to rotate &nbsp;·&nbsp; ← → to browse</div>
         </div>
       </div>
     </div>

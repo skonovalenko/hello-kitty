@@ -122,6 +122,16 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") goTo((current + 1) % pages.length);
 });
 
+// Swipe navigation
+let touchStartX = 0;
+window.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+window.addEventListener("touchend", (e) => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) < 50) return;
+  if (dx < 0) goTo((current + 1) % pages.length);
+  else        goTo((current + pages.length - 1) % pages.length);
+}, { passive: true });
+
 // ── Animate ───────────────────────────────────────────────────────────────
 function animate() {
   requestAnimationFrame(animate);
