@@ -1,17 +1,29 @@
 import * as THREE from "three";
 
-function createSparkleTexture() {
+function createHeartTexture() {
   const canvas = document.createElement("canvas");
   canvas.width = 64;
   canvas.height = 64;
   const ctx = canvas.getContext("2d");
-  const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  grad.addColorStop(0,   "rgba(255,255,255,1)");
-  grad.addColorStop(0.2, "rgba(255,255,255,0.8)");
-  grad.addColorStop(0.5, "rgba(255,255,255,0.2)");
-  grad.addColorStop(1,   "rgba(255,255,255,0)");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, 64, 64);
+
+  ctx.translate(32, 36);
+  const s = 20;
+
+  // Heart path: two top bumps, point at bottom
+  ctx.beginPath();
+  ctx.moveTo(0, -s * 0.1);
+  ctx.bezierCurveTo(-s * 0.05, -s * 0.5, -s * 0.55, -s * 0.5, -s * 0.5, -s * 0.1);
+  ctx.bezierCurveTo(-s * 0.5,  s * 0.25, 0, s * 0.65, 0, s * 0.75);
+  ctx.bezierCurveTo(0,  s * 0.65, s * 0.5, s * 0.25, s * 0.5, -s * 0.1);
+  ctx.bezierCurveTo(s * 0.55, -s * 0.5, s * 0.05, -s * 0.5, 0, -s * 0.1);
+  ctx.closePath();
+
+  // Soft glow behind the heart
+  ctx.shadowBlur = 14;
+  ctx.shadowColor = "rgba(255,255,255,0.6)";
+  ctx.fillStyle = "rgba(255,255,255,0.95)";
+  ctx.fill();
+
   return new THREE.CanvasTexture(canvas);
 }
 
@@ -41,7 +53,7 @@ export function createParticles() {
   const material = new THREE.PointsMaterial({
     color:          0xff69b4,
     size:           0.09,
-    map:            createSparkleTexture(),
+    map:            createHeartTexture(),
     transparent:    true,
     opacity:        0.75,
     depthWrite:     false,
