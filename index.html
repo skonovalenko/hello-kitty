@@ -16,6 +16,7 @@
         --accent:  #ff69b4;
         --bg-from: #8b0050;
         --bg-to:   #2e0018;
+        --bg-y:    60%;
       }
 
       body {
@@ -24,7 +25,7 @@
         width: 100vw;
         font-family: "Inter", sans-serif;
         color: #fff;
-        background: radial-gradient(ellipse at 50% 60%, var(--bg-from) 0%, var(--bg-to) 40%, #000 75%);
+        background: radial-gradient(ellipse at 50% var(--bg-y), var(--bg-from) 0%, var(--bg-to) 40%, #000 75%);
         transition: background 0.6s ease;
       }
 
@@ -306,6 +307,8 @@
 
       /* ── Mobile ───────────────────────────────────────────── */
       @media (max-width: 680px) {
+        :root { --bg-y: 38%; }
+
         .ui {
           grid-template-columns: 44px 1fr 44px;
         }
