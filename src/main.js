@@ -23,6 +23,17 @@ controls.update();
 
 scene.add(...createLights());
 
+// ── World group (used for responsive scaling) ─────────────────────────────
+const world = new THREE.Group();
+scene.add(world);
+
+function updateWorldScale() {
+  const w = window.innerWidth;
+  const s = w < 480 ? 0.6 : w < 768 ? 0.78 : 1;
+  world.scale.setScalar(s);
+}
+updateWorldScale();
+
 // ── Characters ────────────────────────────────────────────────────────────
 const pages = [
   {
@@ -62,7 +73,7 @@ const pages = [
 
 pages.forEach(({ model }) => {
   model.visible = false;
-  scene.add(model);
+  world.add(model);
 });
 
 // ── Page state ────────────────────────────────────────────────────────────
@@ -144,4 +155,5 @@ window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  updateWorldScale();
 });
