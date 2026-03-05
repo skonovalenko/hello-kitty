@@ -31,6 +31,7 @@ function updateWorldScale() {
   const w = window.innerWidth;
   const s = w < 480 ? 0.6 : w < 768 ? 0.78 : 1;
   world.scale.setScalar(s);
+  world.position.y = w < 768 ? 0.5 : 0;
 }
 updateWorldScale();
 
