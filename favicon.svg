@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <circle cx="32" cy="32" r="32" fill="#c0005a"/>
+
+  <!-- Ears -->
+  <ellipse cx="14" cy="17" rx="9" ry="10" fill="#ffc5d3"/>
+  <ellipse cx="50" cy="17" rx="9" ry="10" fill="#ffc5d3"/>
+
+  <!-- Head -->
+  <ellipse cx="32" cy="37" rx="23" ry="20" fill="#ffc5d3"/>
+
+  <!-- Eyes -->
+  <ellipse cx="24" cy="33" rx="2.8" ry="3.2" fill="#111"/>
+  <ellipse cx="40" cy="33" rx="2.8" ry="3.2" fill="#111"/>
+
+  <!-- Nose (gold) -->
+  <ellipse cx="32" cy="40" rx="3.2" ry="2.2" fill="#ffd700"/>
+
+  <!-- Bow — on Hello Kitty's left ear (viewer's right) -->
+  <!-- Left wing -->
+  <ellipse cx="44" cy="12" rx="5.5" ry="3.5" fill="#e91e36" transform="rotate(-18 44 12)"/>
+  <!-- Right wing -->
+  <ellipse cx="55" cy="12" rx="5.5" ry="3.5" fill="#e91e36" transform="rotate(18 55 12)"/>
+  <!-- Center knot -->
+  <circle cx="49.5" cy="12" r="3" fill="#b71c2e"/>
+</svg>
